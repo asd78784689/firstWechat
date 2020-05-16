@@ -1,0 +1,22 @@
+<template name="pageSwiper">
+  <view class="page-section swiper">
+    <swiper indicator-dots="true" autoplay="true" circular="true"  indicator-active-color="rgb(236,201,0)">
+      <block wx:for="{{banner_key}}" wx:key="title">
+        <swiper-item><image src="{{item.imgSrc}}"></image></swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="page-nav">
+    <view class="page-nav-left" bindtap="showAddress">
+      <l-icon name="address" l-class="nav-icon"></l-icon>
+      <view class="nav-text-inner">
+        <text class="nav-text-title">河源麦当劳永康大道分店</text>
+        <text class="nav-text-address">广东省河源市源城区市区东城西片区越王大道西边永康大道南边“商业中心”首层L169、L170、L171号商铺</text>
+      </view>
+    </view>
+    <view class="page-nav-right" bindtap="goToVip">
+      <image src="/imgs/m-icon.png"></image>
+      <text>会员中心</text>
+    </view>
+  </view>
+</template>

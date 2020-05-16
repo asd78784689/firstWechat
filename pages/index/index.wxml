@@ -1,0 +1,50 @@
+<!--index.wxml-->
+<import src="page-swiper/page-swiper.wxml" />
+<import src="food-item/food-item.wxml" />
+<import src="cart/cart.wxml" />
+
+<view class="container">
+  <!-- 导航栏 -->
+  <mp-navigation-bar navbar-data='{{nvabarData}}'></mp-navigation-bar>
+  <!-- swiper与nav -->
+  <template is="pageSwiper" data="{{banner_key}}"></template>
+  <!-- menu菜单栏 -->
+  <view class="page-menu" id="menu">
+    <view class="page-menu-left">
+      <scroll-view scroll-y="true" style="height:{{menuHeight}}px;" scroll-into-view="{{toView}}">
+        <view class="scroll-view-item" id="search" bindtap="goToSearch">
+          <l-icon name="research" l-class="nav-icon"></l-icon>
+          <text>搜索</text>
+        </view>
+        <!-- 通过点击改变catalogSelect决定显示项 -->
+        <!-- scroll-into-view属性可让滚动条滚动到对应的子元素位置 值为元素id值 -->
+        <view class="scroll-view-item {{catalogSelect == item.tag ? 'scroll-view-item-active' : ''}}" wx:for="{{food_data}}"  wx:key="tag" bindtap="itemClick" data-select="{{item.tag}}" id="sw{{index}}" data-index="{{index}}">
+          <text>{{item.name}}</text>
+        </view>
+      </scroll-view>
+    </view>
+    <!-- 菜单右侧详情项 -->
+    <view class="page-menu-right">
+      <scroll-view scroll-y="true" style="height:{{menuHeight}}px;" bindscroll="menuScroll" scroll-into-view="{{toMenu}}" >
+        <block wx:for="{{food_data}}" wx:key="tag">
+        <!-- 直接再包一层view 用于每一个大项的保存 data-id等形式存储index值 之后通过data的属性值切换 -->
+          <view id="mw{{index}}" data-index="{{index}}" class="food-itemSinner">
+            <view class="food-item" wx:for="{{item.spus}}" wx:for-item="j" wx:for-index="idx" wx:key="id" data-index="{{idx}}">
+              <template is="foodItem" data="{{...j}}"></template>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+  <!-- 购物车 -->
+  <template is="cart" data="{{cartData,allCount,showCart}}"></template>
+  <!-- 遮罩 -->
+  <view class="mask" wx:if="{{showCart && cartData.length}}"></view>
+  <!-- 会员中心弹出框 -->
+  <l-dialog 
+    show="{{showVip}}"
+    type="confirm"  
+    show-title="{{false}}"
+    content="即将打开“i麦当劳”小程序" />
+</view>

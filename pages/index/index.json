@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "mp-navigation-bar":"../components/navigation-bar/navigation-bar",
+    "l-icon":"/miniprogram_npm/lin-ui/icon/index",
+    "l-dialog":"/miniprogram_npm/lin-ui/dialog/index"
+  },
+  "navigationStyle":"custom",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
+}

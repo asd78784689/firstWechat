@@ -1,0 +1,66 @@
+
+.page-section{
+  width: 100%;
+}
+
+swiper{
+  width: 100%;
+  height: 400rpx;
+}
+swiper image{
+  width: 100%;
+  height: 400rpx;
+}
+/* 导航区域 */
+.page-nav{
+  background-color: #fff;
+  height: 75px;
+  width: 100%;
+  display: flex;
+}
+.page-nav-left{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+}
+.page-nav-left .nav-icon{
+  margin-right: 10px;
+  width: 45px;
+  text-align: center;
+  font-size: 28px;
+
+}
+.nav-text-inner{
+  flex: 1;
+
+}
+.nav-text-title{
+  font-size: 16px;
+}
+.nav-text-address{
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  word-wrap: break-word;
+}
+.page-nav-right{
+  width: 95px;
+  border-left: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.page-nav-right image{
+  width: 54rpx;
+  height: 54rpx;
+}
+.page-nav-right text{
+  font-size:11px ;
+}

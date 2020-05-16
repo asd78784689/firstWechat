@@ -1,0 +1,33 @@
+<!--pages/index/search.wxml-->
+<import src="../food-item/food-item.wxml" />
+<import src="../cart/cart.wxml" />
+
+<view class="container">
+  <mp-navigation-bar navbar-data='{{nvabarData}}'></mp-navigation-bar>
+  <!-- 搜索栏 -->
+  <view class="search-inner">
+    <view class="back-btn" bindtap="goBack">返回</view>
+    <!-- 搜索出来的为item 同样能够触发购物车 返回时候会将当前的与上一级的合并 所以要将购物车引入  -->
+    <view class="search-ipt">
+        <l-search-bar placeholder="请输入商品名" show-cancel="{{false}}" bind:linblur="iptChange" />
+    </view>
+  </view>
+  <!-- 显示内容区域 -->
+  <view class="search-container" id="sContainer">
+    <scroll-view scroll-y="true" style="height:{{menuHeight}}px;"> 
+      <view class="search-text" wx:if="{{!searchData.length}}">找不到相关商品</view>
+      <!-- 引入food-item 并用wx:for循环遍历 需传入index(item中的thisPatIdx) 以及...item  -->
+      <view class="food-itemSinner" wx:if="{{searchData.length}}" >
+        <view class="food-item" wx:for="{{searchData}}" wx:key="id" wx:for-index="idx">
+          <block bindtap="upDataSearch">
+            <template is="foodItem" data="{{...item}}"></template>
+          </block>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- 购物车 -->
+  <template is="cart" data="{{cartData,allCount,showCart}}"></template>
+  <!-- 遮罩 -->
+  <view class="mask" wx:if="{{showCart && cartData.length}}"></view>
+</view>

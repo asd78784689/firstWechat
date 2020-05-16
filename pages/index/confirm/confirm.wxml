@@ -1,0 +1,117 @@
+<!--pages/index/confirm/confirm.wxml-->
+<view class="container">
+  <mp-navigation-bar navbar-data='{{nvabarData}}'></mp-navigation-bar>
+  <!-- 地址栏 -->
+  <view class="confirm-address">
+    <view class="address-icon">
+      <l-icon  name="address" l-class="address-l-icon" size="30"></l-icon>
+    </view>
+    <view class="address-name">
+      <view class="address-title">河源麦当劳永康大道分店</view>
+      <view class="address-part">广东省河源市源城区市区东城西片区越王大道西边永康大道南边“商业中心”首层L169、L170、L171号商铺</view>
+    </view>
+    <view class="address-back">
+      <l-icon  name="right" l-class="back-icon" color="#000000" size="40"></l-icon>
+    </view>
+  </view>
+  <!-- 取餐方式 -->
+  <view class="confirm-way">
+    <view class="way-title">请选择取餐方式</view>
+    <l-radio-group l-class="l-radio-group" none-checked="{{false}}" placement="row" bind:linchange="wayChange" data-type="way" data-index="0">
+      <l-radio key="1" select-color="black"  l-class="l-radio">堂食</l-radio>
+      <l-radio key="2" select-color="black"  l-class="l-radio">店内取餐外带</l-radio>
+      <l-radio key="3" select-color="black"  l-class="l-radio">店门外取餐</l-radio>
+    </l-radio-group>
+  </view>
+  <!-- 取餐时间 -->
+  <view class="confirm-time">
+    <view class="time-title">请选择取餐时间</view>
+    <l-radio-group  l-class="l-radio-group" none-checked="{{false}}"  placement="row"  bind:linchange="timeChange" data-type="time" data-index="1">
+      <l-radio key="1" select-color="black"  l-class="l-radio">现在取餐</l-radio>
+      <l-radio key="2" select-color="black"  l-class="l-radio">10分钟后到店</l-radio>
+      <l-radio key="3" select-color="black"  l-class="l-radio">20分钟后到店</l-radio>
+      <l-radio key="4" select-color="black"  l-class="l-radio">30分钟后到店</l-radio>
+    </l-radio-group>
+  </view>
+  <!-- 支付方式 -->
+  <view class="confirm-pay">
+    <view class="pay-title">请选择支付方式</view>
+    <l-radio-group  l-class="l-radio-group" none-checked="{{false}}"  placement="column"  bind:linchange="payChange" data-type="pay" data-index="2">
+      <l-radio key="1" select-color="black"  l-class="l-radio-pay" placement="right">
+        <view class="pay-wallet">
+          <l-icon  name="address" l-class="wallet-icon" color="yellow" size="40"></l-icon>
+          <view>钱包账户支付</view>
+          <view class="pay-small">还未开通</view>
+        </view>
+      </l-radio>
+      <l-radio key="2" select-color="black"  l-class="l-radio-pay" placement="right">
+        <view class="pay-wechat">
+          <l-icon name="comment" l-class="comment-icon" color="green" size="40"></l-icon>
+          微信支付
+        </view>
+      </l-radio>
+    </l-radio-group>
+  </view>
+  <!-- 购物车信息 -->
+  <view class="confirm-cart">
+    <view class="cart-inner">
+      <view class="cart-item" wx:for="{{cartData}}" wx:key="id">
+        <view class="item-name">
+          <view class="item-title">{{item.name}}</view>
+          <view class="item-price">￥<text>{{item.min_price}}</text></view>
+        </view>
+        <view class="item-btns" bindtap="upDataData">
+          <view class="item-btn" bindtap="removeItem" data-parentIndex="{{item.thisPtIdx}}" data-index="{{item.thisIdx}}">-</view>
+          <view class="item-count">{{item.status}}</view>
+          <view class="item-btn" bindtap="addItem"  data-parentIndex="{{item.thisPtIdx}}" data-index="{{item.thisIdx}}">+</view>
+        </view>
+      </view>
+    </view>
+    <view class="cart-allCount">
+      <view class="count-text">
+        <view>合计</view>
+        <view class="count-explain">
+          <l-icon  name="warning" l-class="warning-icon" color="#ccc" size="30"></l-icon>
+          <text>餐品及服务说明</text>
+        </view>
+      </view>
+      <view class="count-num">￥<text>{{allCount}}</text></view>
+    </view>
+  </view>
+  <!-- 发票 -->
+  <view class="confirm-need">
+    <l-radio-group  l-class="l-radio-group" current="1"  placement="column" bind:linchange="needChange" data-type="need" data-index="3">
+      <l-radio key="1" select-color="black" l-class="l-radio-pay" placement="right">
+          <view>发票需求</view>
+      </l-radio>
+    </l-radio-group>
+  </view>
+  <!-- 支付 -->
+  <view class="confirm-goTopay">
+    <view class="goTopay-allCount">合计 ￥<text>{{allCount}}</text></view>
+    <view class="goTopay-btn">
+      <l-button shape="semicircle" type="warning" disabled="{{disable}}" bind:lintap="goToPay">去支付 ></l-button>
+    </view>
+  </view>
+  <!-- 弹出的支付信息   -->
+  <l-popup show="{{showPopup}}" bind:lintap="hidePopup" content-align="center">
+    <view class="popup">
+      <image src="/imgs/m-icon.png" class="popup-image"></image>
+      <l-icon name="close" color="#000" class="popup-icon" size="20" bindtap="hidePopup"></l-icon>
+      <view class="popup-top">
+        请确认您的取餐餐厅
+      </view>
+      <view class="popup-address">
+        <view class="address-name">
+          <view class="address-titleName">河源麦当劳永康大道分店</view>
+          <view class="address-text">广东省河源市源城区市区东城西片区越王大道西边永康大道南边“商业中心”首层L169、L170、L171号商铺</view>
+        </view>
+        <view class="address-distance">710.0米</view>
+      </view>
+      <view class="popup-bottom">
+        <view class="modify-btn" bindtap="modifyClick">修改餐厅 ></view>
+        <l-button width="300" shape="semicircle" type="warning" bind:lintap="payClick">确认并支付</l-button>
+      </view>
+    </view>
+  </l-popup>
+</view>

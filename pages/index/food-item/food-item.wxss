@@ -1,0 +1,53 @@
+.food-item{
+  height: 180px;
+  background-color: #fff;
+  display: flex;
+  margin-bottom: 10px;
+  overflow: hidden;
+  border-radius: 15px;
+}
+.food-item-inner{
+  flex:1;
+  padding: 5px 0 7px 5px;
+}
+.food-item-title{
+  margin: 10px 0 30px 10px;
+  /* 限制多行的隐藏 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  word-wrap: break-word;
+}
+.food-item-price{
+  margin-left: 10px;
+  margin-bottom: 25px;
+}
+.food-item-btns{
+  display: flex;
+  align-items: center;
+}
+.food-item-btn{
+  margin-left: 10px;
+  position: relative;
+  font-size: 22px;
+}
+.food-item-count{
+  color: #f00;
+  margin-left:10px ;
+}
+.food-item-dz::before{
+  content: ">";
+  display: inline-block;
+  position: absolute;
+  top: -6px;
+  left:50%;
+  font-size: 24px;
+}
+.food-item-pic{
+  width: 150px;
+  height: 150px;
+  margin-top: 35px;
+}

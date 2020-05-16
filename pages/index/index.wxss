@@ -1,0 +1,67 @@
+/**index.wxss**/
+@import 'page-swiper/page-swiper.wxss';
+@import 'food-item/food-item.wxss';
+@import 'cart/cart.wxss';
+
+/* 菜单区域 */
+.page-menu{
+  width: 100%;
+  display: flex;
+  background-color: rgb(238,238,238);
+  padding-top: 10px;
+}
+.page-menu-left{
+  width: 70px;
+}
+.scroll-view-item{
+  width: 100%;
+  min-height: 75px;
+  background-color:#fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-indent: 4px;
+  overflow: hidden;
+}
+.scroll-view-item-active{
+  background-color: rgb(238,238,238);
+  border-left: 2px solid rgb(255,199,48);
+  box-sizing: border-box;
+}
+.scroll-view-item .nav-icon{
+  /* width: 45px; */
+  text-align: center;
+  font-size: 24px;
+}
+.scroll-view-item text{
+  font-size: 13px;
+  padding: 0 14px;
+}
+#search text{
+  font-size: 13px;
+  text-align: center;
+}
+
+/* 右侧内容 */
+.page-menu-right{
+  flex: 1;
+  padding: 0 10px;
+}
+
+/* 取消默认滚动条样式 */
+::-webkit-scrollbar{width:0px}
+
+
+
+/* 遮罩 */
+.mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,.7);
+  z-index: 90;
+} 

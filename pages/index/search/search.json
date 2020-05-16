@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "mp-navigation-bar":"../components/navigation-bar/navigation-bar",
+    "l-search-bar":"/miniprogram_npm/lin-ui/search-bar/index"
+  },
+  "navigationStyle":"custom",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
+}

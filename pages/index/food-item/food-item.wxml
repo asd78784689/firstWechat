@@ -1,0 +1,13 @@
+<template name="foodItem">
+  <view class="food-item-inner">
+    <view class="food-item-title">{{name}}</view>
+    <view class="food-item-price">￥{{min_price}}</view>
+    <!-- <view class="food-item-btn food-item-dz" >去定制</view> -->
+    <view class="food-item-btns" bindtap="upDataData">
+      <view class="food-item-btn" bindtap="removeItem"  wx:if="{{status}}"  data-parentIndex="{{thisPtIdx}}" data-index="{{thisIdx}}">-</view>
+      <view class="food-item-count" wx:if="{{status}}">{{status}}</view>
+      <view class="food-item-btn" bindtap="addItem" data-parentIndex="{{thisPtIdx}}" data-index="{{thisIdx}}">+</view>
+    </view>
+  </view>
+  <image src="{{picture}}" class="food-item-pic"></image>
+</template>

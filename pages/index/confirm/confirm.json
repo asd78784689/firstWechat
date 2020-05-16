@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "mp-navigation-bar":"../components/navigation-bar/navigation-bar",
+    "l-icon":"/miniprogram_npm/lin-ui/icon/index",
+    "l-radio-group":"/miniprogram_npm/lin-ui/radio-group/index",
+    "l-radio":"/miniprogram_npm/lin-ui/radio/index",
+    "l-button":"/miniprogram_npm/lin-ui/button/index",
+    "l-popup":"/miniprogram_npm/lin-ui/popup/index"
+  },
+  "navigationStyle":"custom",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
+}

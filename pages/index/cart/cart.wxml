@@ -1,0 +1,27 @@
+<template name="cart">
+  <view class="page-cart" wx:if="{{cartData.length}}">
+    <view class="cart-num" bindtap="showList">
+      <image src="/imgs/cart.png" class="cart-pic"></image>
+      <view class="cart-allNum">{{cartData.length}}</view>
+    </view>
+    <view class="cart-price">￥<text>{{allCount}}</text></view>
+    <view class="cart-btn" bindtap="goToConfirm">选好了</view>
+    <view class="cart-list" wx:if="{{showCart}}">
+      <view class="list-top">
+        <text>已选产品</text>
+        <view class="list-clear" catchtap="clearCart"><image src="/imgs/clear.png"></image>清空</view>
+      </view>
+      <view class="list-item" wx:for="{{cartData}}" wx:key="id">
+        <view class="item-name">
+          <view class="item-title">{{item.name}}</view>
+          <view class="item-price">￥{{item.min_price}}</view>
+        </view>
+        <view class="list-item-btns" bindtap="upDataData">
+          <view class="list-item-btn" catchtap="removeItem" data-parentIndex="{{item.thisPtIdx}}" data-index="{{item.thisIdx}}">-</view>
+          <view class="list-item-count">{{item.status}}</view>
+          <view class="list-item-btn" catchtap="addItem" data-parentIndex="{{item.thisPtIdx}}" data-index="{{item.thisIdx}}">+</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
